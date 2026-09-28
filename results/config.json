@@ -1,0 +1,14 @@
+{
+  "dataset": "scifact",
+  "split": "test",
+  "queries": 300,
+  "docs": 5183,
+  "bm25": {
+    "k1": 1.5,
+    "b": 0.5
+  },
+  "hybrid_dense_model": "Dense (BGE-small)",
+  "rrf_k": 60,
+  "weighted_alpha": 0.6,
+  "depth_for_fusion": 100
+}

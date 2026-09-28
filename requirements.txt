@@ -6,3 +6,4 @@ PyStemmer>=2.2
 sentence-transformers>=3.0
 faiss-cpu>=1.8
 matplotlib>=3.8
+tabulate>=0.9
