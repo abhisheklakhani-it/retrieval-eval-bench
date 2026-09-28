@@ -33,7 +33,7 @@ DENSE_MODELS = [
     ("BAAI/bge-small-en-v1.5", "Represent this sentence for searching relevant passages: ", "Dense (BGE-small)"),
 ]
 BM25_GRID = {"k1": [0.9, 1.2, 1.5, 2.0], "b": [0.5, 0.75, 0.9]}
-ALPHAS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+ALPHAS = [round(0.1 * i, 1) for i in range(11)]  # 0 = BM25 only, 1 = dense only
 
 
 def log(msg: str) -> None:
@@ -127,6 +127,8 @@ def main() -> None:
     save(pd.DataFrame([results[r.name].row() for r in [retrievers[0], retrievers[1]] + ablations]), "ablation_stemming")
     save(pd.DataFrame(tuning), "tuning")
     save(pd.DataFrame(significance), "significance")
+    per_query = pd.DataFrame({"query_id": list(test.qrels)} | {n: ndcg_list(n) for n in main_names})
+    per_query.to_csv(RESULTS / "per_query_ndcg.csv", index=False)
     (RESULTS / "config.json").write_text(json.dumps({
         "dataset": args.dataset, "split": "test", "queries": len(test.queries), "docs": len(doc_ids),
         "bm25": {"k1": best_bm25[0], "b": best_bm25[1]}, "hybrid_dense_model": best_dense,

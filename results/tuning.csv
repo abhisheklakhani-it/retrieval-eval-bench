@@ -11,6 +11,7 @@ step,setting,train_ndcg@10
 "BM25 k1,b","k1=2.0, b=0.5",0.6947
 "BM25 k1,b","k1=2.0, b=0.75",0.691
 "BM25 k1,b","k1=2.0, b=0.9",0.6877
+hybrid alpha,alpha=0.0,0.6965
 hybrid alpha,alpha=0.1,0.7099
 hybrid alpha,alpha=0.2,0.7266
 hybrid alpha,alpha=0.3,0.7388
@@ -20,3 +21,4 @@ hybrid alpha,alpha=0.6,0.7708
 hybrid alpha,alpha=0.7,0.7685
 hybrid alpha,alpha=0.8,0.7636
 hybrid alpha,alpha=0.9,0.7564
+hybrid alpha,alpha=1.0,0.7486
