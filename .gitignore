@@ -1,0 +1,15 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+
+# Downloaded datasets and cached embeddings (re-created by the scripts)
+data/
+cache/
+
+# Secrets
+.env
+
+# Private session notes (never uploaded)
+SESSION_NOTES*.txt
