@@ -39,3 +39,8 @@ def evaluate(run: dict[str, list[str]], qrels: dict[str, dict[str, int]], ks: tu
         totals["mrr@10"] += reciprocal_rank(ranked, relevant, 10)
         totals["ndcg@10"] += ndcg_at_k(ranked, relevant, 10)
     return {name: value / len(qrels) for name, value in totals.items()}
+
+
+def per_query_ndcg(run: dict[str, list[str]], qrels: dict[str, dict[str, int]], k: int = 10) -> dict[str, float]:
+    """nDCG@k for each query separately (needed for significance tests)."""
+    return {qid: ndcg_at_k(run.get(qid, []), relevant, k) for qid, relevant in qrels.items()}
