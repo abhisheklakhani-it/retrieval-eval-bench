@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  test:
+    name: Lint and test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      UV_TORCH_BACKEND: cpu # CPU-only PyTorch wheels: no 2 GB CUDA download
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@07a047e608db84b3d8c06cd9a7c7dcc9c355c18e # v10.3.2
+        with:
+          python-version: "3.11"
+          activate-environment: true
+          enable-cache: true
+          cache-dependency-glob: "requirements*.txt"
+      - name: Install dependencies
+        run: uv pip install -r requirements-dev.txt
+      - name: ruff (bug-finding rules)
+        run: uvx ruff@0.17.2 check --isolated --select F,E9 --extend-exclude "*.ipynb" --output-format=github .
+      - name: pytest (no API keys, no network services)
+        run: python -m pytest -q

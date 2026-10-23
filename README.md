@@ -2,6 +2,7 @@
 
 Which retrieval method should a RAG system use? This benchmark compares **TF-IDF**, **BM25**, **dense embeddings** and **hybrid search** on a public, human-labelled dataset, scored with **recall@k, MRR@10 and nDCG@10**, with parameters tuned on a train split, results reported on a separate test split, and **significance tests** to separate real gains from noise.
 
+[![CI](https://github.com/abhisheklakhani-it/retrieval-eval-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/abhisheklakhani-it/retrieval-eval-bench/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python&logoColor=white)
 ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?logo=scikitlearn&logoColor=white)
 ![sentence-transformers](https://img.shields.io/badge/sentence--transformers-embeddings-FFD21E)
