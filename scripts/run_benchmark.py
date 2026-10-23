@@ -17,7 +17,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from reteval.benchmark import Result, rrf_run, run_queries, score, weighted_run  # noqa: E402
+from reteval.benchmark import rrf_run, run_queries, score, weighted_run  # noqa: E402
 from reteval.data import load  # noqa: E402
 from reteval.metrics import per_query_ndcg  # noqa: E402
 from reteval.stats import bootstrap_ci, paired_randomization_test  # noqa: E402
